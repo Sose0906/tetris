@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #212121;
+    color: white;
+    font-family: serif;
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 15px;
+
+}
+
+#game-board {
+    margin: 15px auto;
+    border: 2px solid;
+    display: none;
+}
+
+.cell {
+    display: inline-block;
+    float: left;
+    border: 0.005cm solid rgba(255, 255, 255, 0.2);
+    background-color: #212121;
+}
