@@ -194,7 +194,56 @@ function Figures(key) {
 
     };
 
+    this.rotateF = function () {
+        if (!canRotate()) return;
+        this.changeMatrix();
 
+    };
+    function canRotate() {
+        let newMatrix =  rotateMatrixToRight(matrix);
+
+        for (let i = 0; i < newMatrix.length; i++) {
+            for (let j = 0; j < newMatrix[i].length; j++) {
+                if (!newMatrix[i][i]) continue;
+                let pixelY = i + y;
+                let pixelX = j + x;
+
+                if (FILLED_CELLS.hasOwnProperty(pixelY + "-" + pixelX)) {
+                    return false;
+                }
+                if (pixelX >=cols) {
+                    return false;
+                }
+                if (pixelY >= rows) {
+                    return false;
+                }
+
+            }
+        }
+        return true;
+
+    }
+
+    this.changeMatrix = function () {
+        this.cancel();
+        matrix = rotateMatrixToRight(matrix);
+        height = matrix.length;
+        width = matrix[0].length;
+        this.paint();
+    };
+
+    function rotateMatrixToRight(m) {
+        let M = m.length - 1;
+        let newMatrix = [];
+
+        for (let i = 0; i < m[0].length; i++) {
+            newMatrix.push([]);
+            for (let j = 0; j < m.length; j++) {
+                newMatrix[i][j] = m[M - j][i];
+            }
+        }
+        return newMatrix;
+    }
 
 
 
